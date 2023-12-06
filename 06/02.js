@@ -21,14 +21,9 @@ const input = require("fs").readFileSync('input')
         .replace(/\s/g, ''))
     .map(line => parseInt(line));
 
-console.log(input)
-
 const time = input[0];
 const distance = input[1];
 
-let values = [];
-
-let speed = distance / time;
 let ctr = 0;
 
 let minwin = 0;
