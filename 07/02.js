@@ -12,7 +12,8 @@ console.log(require("fs").readFileSync('input')
         if (counts[v] == undefined) counts[v] = 1;
         else counts[v]++;
         return counts;
-    }, {})]).map(line => {
+    }, {})])
+    .map(line => {
         const wild = line[2]["1"] || 0;
         delete line[2]["1"];
         return [
@@ -38,5 +39,4 @@ console.log(require("fs").readFileSync('input')
         "11111": "T"
     })[line[2]] + line[0], line[1]])
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(line => { console.log(line); return line; })
     .reduce((score, line, idx) => score + line[1] * (idx + 1), 0));
