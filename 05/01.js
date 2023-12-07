@@ -12,7 +12,7 @@ function sourceToDest(seed, map) {
     return -1;
 }
 
-const input = require("fs").readFileSync('test')
+const input = require("fs").readFileSync('input')
     .toString()
     .split('\n\n');
 
