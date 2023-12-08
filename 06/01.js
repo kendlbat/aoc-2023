@@ -12,15 +12,18 @@ function calculateDistanceTravelled(buttonHoldTime, duration) {
     return (duration - buttonHoldTime) * buttonHoldTime;
 }
 
-const input = require("fs").readFileSync('input')
+const input = require("fs")
+    .readFileSync("input")
     .toString()
-    .split('\n')
-    .filter(line => line.length > 0)
-    .map(line => line
-        .split(":")[1]
-        .split(' ')
-        .filter(v => v != "")
-        .map(v => parseInt(v)));
+    .split("\n")
+    .filter((line) => line.length > 0)
+    .map((line) =>
+        line
+            .split(":")[1]
+            .split(" ")
+            .filter((v) => v != "")
+            .map((v) => parseInt(v)),
+    );
 
 const times = input[0];
 const distances = input[1];
@@ -44,7 +47,10 @@ for (let i = 0; i < times.length; i++) {
 
     for (let j = minwin; j < time - 1; j++) {
         let buttonHoldTime = j;
-        let distanceTravelled = calculateDistanceTravelled(buttonHoldTime, time);
+        let distanceTravelled = calculateDistanceTravelled(
+            buttonHoldTime,
+            time,
+        );
         if (distanceTravelled <= distance) break;
         ctr++;
     }
@@ -53,4 +59,4 @@ for (let i = 0; i < times.length; i++) {
 }
 
 let initial = values.shift();
-console.log(values.reduce((a, b) => a * b, initial))
+console.log(values.reduce((a, b) => a * b, initial));

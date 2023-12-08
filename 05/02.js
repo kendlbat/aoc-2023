@@ -1,28 +1,24 @@
-const input = require("fs").readFileSync('input')
-    .toString()
-    .split('\n\n');
+const input = require("fs").readFileSync("input").toString().split("\n\n");
 
 const preseeds = input[0]
     .split(": ")[1]
-    .split(' ')
-    .map(v => parseInt(v));
+    .split(" ")
+    .map((v) => parseInt(v));
 
 const seeds = [];
 
 for (let i = 0; i < preseeds.length; i += 2) {
-    seeds.push(preseeds.slice(i, i + 2))
+    seeds.push(preseeds.slice(i, i + 2));
 }
 
 const maps = input
     .slice(1)
-    .map(line => line
-        .split("\n")
-        .slice(1))
-    .map(line => line
-        .map(smap => smap
-            .split(" ")
-            .map(v => parseInt(v)))
-        .sort((a, b) => a[1] - b[1]));
+    .map((line) => line.split("\n").slice(1))
+    .map((line) =>
+        line
+            .map((smap) => smap.split(" ").map((v) => parseInt(v)))
+            .sort((a, b) => a[1] - b[1]),
+    );
 
 let mappingseeds = [...seeds];
 
@@ -54,14 +50,15 @@ for (let mapstage of maps) {
         if (currentIdx < range[1])
             mapped.push([currentIdx, range[1] - currentIdx]);
 
-        mappedseeds = mappedseeds.concat(
-            mapped.filter(v => v[1] > 0)
-        );
+        mappedseeds = mappedseeds.concat(mapped.filter((v) => v[1] > 0));
     }
     mappingseeds = mappedseeds;
 }
 
-
 // console.log(seeds);
 // console.log(maps);
-console.log(mappingseeds.map(v => v[0]).reduce((a, b) => a < b ? a : b, Math.INFINITY));
+console.log(
+    mappingseeds
+        .map((v) => v[0])
+        .reduce((a, b) => (a < b ? a : b), Math.INFINITY),
+);
