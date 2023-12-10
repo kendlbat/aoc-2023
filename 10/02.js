@@ -164,7 +164,6 @@ for (let i = 0; i < input.length; i++) {
         .join("")
         .replace(/(F7|LJ)/g, "")
         .replace(/(F(-+)7|L(-+)J)/g, "")
-
         .replace(/(F(-*)J|L(-*)7)/g, "|")
         .split("");
 }
