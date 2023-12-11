@@ -3,6 +3,10 @@
         "prettier": "^3.1.0"
     },
     "scripts": {
-        "format": "prettier --write \"**/*.js\""
+        "format": "prettier --write \"**/*.js\"",
+        "start": "node runall.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1"
     }
 }
