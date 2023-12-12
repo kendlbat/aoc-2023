@@ -32,7 +32,6 @@ async function main() {
         }),
     );
 
-    console.log(times);
     times.forEach((p, idx) => {
         if (p.status === "rejected") {
             console.log(`Day ${dirs[idx]}: Failed`);
