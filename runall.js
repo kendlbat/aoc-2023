@@ -27,20 +27,27 @@ async function main() {
 
                 return [end1 - start1, end2 - end1];
             } catch (e) {
-                console.warn(`Failed to run day ${dir}`);
+                // console.warn(`Failed to run day ${dir}`);
             }
         }),
     );
 
-    if (times.findIndex((p) => p.status === "rejected") !== -1) {
-        times.forEach((time, idx) => {
-            console.log(`Day ${dirs[idx]}: ${time[0]}ms, ${time[1]}ms`);
-        });
+    console.log(times);
+    times.forEach((p, idx) => {
+        if (p.status === "rejected") {
+            console.log(`Day ${dirs[idx]}: Failed`);
+            return;
+        }
+        let time = p.value;
+        console.log(`Day ${dirs[idx]}: ${time[0]}ms, ${time[1]}ms`);
+    });
 
-        const total = times.reduce((acc, cur) => acc + cur[0] + cur[1], 0);
+    const total = times
+        .filter((p) => p.status === "fulfilled")
+        .map((p) => p.value)
+        .reduce((acc, cur) => acc + cur[0] + cur[1], 0);
 
-        console.log(`Total: ${total}ms`);
-    }
+    console.log(`Total: ${total}ms`);
 }
 
 main();
