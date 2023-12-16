@@ -19,10 +19,23 @@ async function main() {
                     console.log(`Fetched input for ${dir}`);
                 }
 
+                // Get files in directory
+                const files = fs
+                    .readdirSync(dir)
+                    .filter((x) => x.match(/\.(js|py)$/));
+
                 const start1 = Date.now();
-                cp.execSync(`cd ${dir} && node 01.js`);
+                if (files.includes("01.js")) {
+                    cp.execSync(`cd ${dir} && node 01.js`);
+                } else if (files.includes("01.py")) {
+                    cp.execSync(`cd ${dir} && python3 01.py`);
+                }
                 const end1 = Date.now();
-                cp.execSync(`cd ${dir} && node 02.js`);
+                if (files.includes("02.js")) {
+                    cp.execSync(`cd ${dir} && node 02.js`);
+                } else if (files.includes("02.py")) {
+                    cp.execSync(`cd ${dir} && python3 02.py`);
+                }
                 const end2 = Date.now();
 
                 return [end1 - start1, end2 - end1];
